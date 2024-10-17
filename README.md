@@ -44,3 +44,43 @@ The project utilizes **JDBC** to connect to a **MySQL** database for storing use
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Adityacsbs/ATM-Machine-Java.git
+
+   Database Configuration:
+
+2. Set up a MySQL database named atm_machine.
+   Run the following SQL commands to create the required tables:
+
+     CREATE DATABASE atm_machine;
+
+USE atm_machine;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    balance DECIMAL(10, 2) DEFAULT 0.00
+);
+
+CREATE TABLE transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    type ENUM('deposit', 'withdrawal', 'transfer'),
+    amount DECIMAL(10, 2),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+3.  Configure Database Connection:
+
+   Open Conn.java.
+   Update the database connection details with your local setup:
+
+   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm_machine", "root", "your_password");
+
+4.  Run the Project:
+
+   Open the project in your IDE (NetBeans or any other Java IDE).
+   Compile and run the Login.java (or ATM.java) class.
+   Use the console interface to simulate ATM transactions (create an account, login, and perform transactions).  
+   
+
+
