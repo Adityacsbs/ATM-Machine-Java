@@ -41,19 +41,18 @@ The project utilizes **JDBC** to connect to a **MySQL** database for storing use
 4. **Git** installed for version control and collaboration.
 
 ### Steps to Run the Project:
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Adityacsbs/ATM-Machine-Java.git
+```bash
+# 1. Clone the Repository
+git clone https://github.com/Adityacsbs/ATM-Machine-Java.git
 
-   Database Configuration:
+# 2. Database Configuration
+# Set up the MySQL database:
+CREATE DATABASE atm_machine;
 
-2. Set up a MySQL database named atm_machine.
-   Run the following SQL commands to create the required tables:
-
-     CREATE DATABASE atm_machine;
-
+# Use the new database:
 USE atm_machine;
 
+# Create the `users` table:
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
@@ -61,6 +60,7 @@ CREATE TABLE users (
     balance DECIMAL(10, 2) DEFAULT 0.00
 );
 
+# Create the `transactions` table:
 CREATE TABLE transactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -69,18 +69,14 @@ CREATE TABLE transactions (
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-3.  Configure Database Connection:
 
-   Open Conn.java.
-   Update the database connection details with your local setup:
+# 3. Configure Database Connection
+# In the Conn.java file, configure the database connection details:
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm_machine", "root", "your_password");
 
-   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/atm_machine", "root", "your_password");
+# Replace "your_password" with your actual MySQL root password.
 
-4.  Run the Project:
-
-   Open the project in your IDE (NetBeans or any other Java IDE).
-   Compile and run the Login.java (or ATM.java) class.
-   Use the console interface to simulate ATM transactions (create an account, login, and perform transactions).  
-   
-
-
+# 4. Run the Project
+# Open the project in your preferred IDE (NetBeans, IntelliJ, or Eclipse).
+# Compile and run the `Login.java` (or `ATM.java`) class.
+# Use the console interface to simulate ATM transactions (create an account, login, and perform transactions like deposits, withdrawals, and fund transfers).
